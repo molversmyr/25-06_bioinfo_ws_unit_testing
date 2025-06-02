@@ -1,4 +1,5 @@
 from second.second import greeting
+import pytest
 
 def test_greeting_eng():
     assert greeting("James", "English") == "Hello James!"
@@ -15,3 +16,18 @@ def test_greeting_default():
 # continue by using assert
 # add your changes: git add second/tests/second_test.py
 # commit your changes using commit message conventions (https://inpred.github.io/24-03_bioinfo_ws/#19): git commit -m "test: <your commit message>"
+
+def test_greeting_name_exception():
+    with pytest.raises(TypeError, match="name needs to be a string"):
+        assert greeting(203, "English") == None
+
+def test_greeting_language_exception():
+    with pytest.raises(TypeError, match="language needs to be a string"):
+        assert greeting("Håvard", True) == None
+
+
+
+# def test_greeting_exception():
+#     with pytest.raises(TypeError):
+#         assert greeting(203, "English") == None
+#         assert greeting("Håvard", True) == None
